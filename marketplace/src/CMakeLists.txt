@@ -1,2 +1,7 @@
 add_subdirectory(usuario) 
 add_subdirectory(cursodeextension)
+add_subdirectory(database)
+add_executable(main main.cc)
+target_link_libraries(main usuario)
+target_link_libraries(main database)
+target_link_libraries(main cursodeextension)

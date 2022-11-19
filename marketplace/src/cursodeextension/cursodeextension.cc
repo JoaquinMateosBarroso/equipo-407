@@ -2,8 +2,10 @@
 #include <list>
 #include <iostream>
 #include "cursodeextension.h"
-#include "usuario.h"
+#include <usuario.h>
 
-void CursodeExtension::añadir_usuario(Usuario const u){
-    participantes.push_back(u);
+CursodeExtension::CursodeExtension(int codigo, std::string nombre) {
+    _codigo = codigo;
+    _nombre = nombre;
+    _participantes = std::list<Usuario>();
 }
