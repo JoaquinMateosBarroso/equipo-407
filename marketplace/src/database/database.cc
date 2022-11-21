@@ -17,6 +17,7 @@ CursodeExtension Database::buscar_curso(std::string const nombre) {
             return *it;
         }
     }
+    return CursodeExtension(0, "empty");
 }
 
 CursodeExtension Database::buscar_curso(int const codigo) {
