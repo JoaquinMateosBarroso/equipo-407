@@ -7,6 +7,8 @@
 #include <cursodeextension.h>
 #include <database.h>
 
+#define MAX_LONGITUD 100
+
 int main(int argc, char const *argv[])
 {
     std::list<Usuario> usuarios_registrados = std::list<Usuario>();
@@ -21,11 +23,14 @@ int main(int argc, char const *argv[])
     Database db = Database(lista_cursos, usuarios_registrados);
 
     std::string nombre, apellidos, dni, correo;
+    char aux[MAX_LONGITUD];
 
     std::cout << "Introduzca su nombre: " << std::endl;
-    std::cin >> nombre;
+    std::cin.getline(aux, MAX_LONGITUD, '\n');
+    nombre = aux;
     std::cout << "Introduzca sus apellidos: " << std::endl;
-    std::cin >> apellidos;
+    std::cin.getline(aux, MAX_LONGITUD, '\n');
+    apellidos = aux;
     std::cout << "Introduzca su dni: " << std::endl;
     std::cin >> dni;
     std::cout << "Introduzca su correo: " << std::endl;
