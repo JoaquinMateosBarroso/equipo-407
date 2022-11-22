@@ -10,13 +10,19 @@
 class CursodeExtension{
     private:
         int _codigo;
-        std::string _nombre;           //DNI de la persona
+        std::string _nombre;
+        std::string _descripcion;
         std::list<Usuario> _participantes;
     public:
-    CursodeExtension(int codigo, std::string nombre);
+    //Constructor por parametros
+    CursodeExtension(int codigo, std::string nombre, std::string decripcion);
+
     inline std::string get_nombre() {return _nombre;}
+
     inline int get_codigo() {return _codigo;}
+
     inline void añadir_usuario(Usuario const u){_participantes.push_back(u);}
+
 };
 
 

@@ -9,15 +9,34 @@
 
 #define MAX_LONGITUD 100
 
+
+//crear curso de extensión de manera global
+
+
+
+bool dar_alta_curso(Usuario &usuario)
+{
+
+    //pedir datos
+
+    //crear curso de extensión con los datos
+
+
+    //return database.dar_alta_curso(usuario, curso);
+
+}
+
 int main(int argc, char const *argv[])
 {
     std::list<Usuario> usuarios_registrados = std::list<Usuario>();
     std::list<CursodeExtension> lista_cursos = std::list<CursodeExtension>();
 
-    lista_cursos.push_back(CursodeExtension(1, "Curso de Python"));
-    lista_cursos.push_back(CursodeExtension(2, "Curso de Docker"));
-    lista_cursos.push_back(CursodeExtension(3, "Curso de TypeScript"));
-    lista_cursos.push_back(CursodeExtension(4, "Curso de Cocina"));
+
+//Lo de aquí es antiguo; borrar cuando se implemente bien
+    // lista_cursos.push_back(CursodeExtension(1, "Curso de Python"));
+    // lista_cursos.push_back(CursodeExtension(2, "Curso de Docker"));
+    // lista_cursos.push_back(CursodeExtension(3, "Curso de TypeScript"));
+    // lista_cursos.push_back(CursodeExtension(4, "Curso de Cocina"));
 
     
     Database db = Database(lista_cursos, usuarios_registrados);

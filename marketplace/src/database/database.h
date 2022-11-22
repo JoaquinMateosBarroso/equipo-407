@@ -18,6 +18,7 @@ class Database{
         Usuario login_usuario(std::string const dni);
         CursodeExtension buscar_curso(std::string const nombre);
         CursodeExtension buscar_curso(int const codigo);
+        bool dar_alta_curso(Usuario usuario, CursodeExtension curso);
 };
 
 

@@ -17,7 +17,7 @@ CursodeExtension Database::buscar_curso(std::string const nombre) {
             return *it;
         }
     }
-    return CursodeExtension(0, "empty");
+    return CursodeExtension(0, "empty", "empty");
 }
 
 CursodeExtension Database::buscar_curso(int const codigo) {
@@ -27,5 +27,17 @@ CursodeExtension Database::buscar_curso(int const codigo) {
             return *it;
         }
     }
-    return CursodeExtension(0, "empty");
+    return CursodeExtension(0, "empty", "empty");
+}
+
+bool Database::dar_alta_curso(Usuario usuario, CursodeExtension curso)
+{
+    //comprobar que usuario.rol == "Coordinador cursos"
+
+
+    //Al final del if devuelves true
+
+    //Si algún curso se llama igual devolver false también
+
+    //return false si no
 }
