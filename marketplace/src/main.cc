@@ -9,8 +9,11 @@
 
 #define MAX_LONGITUD 100
 
+using namespace std;
 
-//crear curso de extensión de manera global
+
+//crear Database de manera global
+Database database = Database();
 
 
 
@@ -26,20 +29,17 @@ bool dar_alta_curso(Usuario &usuario)
 
 }
 
-int main(int argc, char const *argv[])
+void inicio_sesion()
 {
-    std::list<Usuario> usuarios_registrados = std::list<Usuario>();
-    std::list<CursodeExtension> lista_cursos = std::list<CursodeExtension>();
+    cout << "Entrar como:" << endl;
+    cout << "1.- Usuario" << endl;
+    cout << "2.- Coordinador de cursos de extensión" << endl;
+}
 
 
-//Lo de aquí es antiguo; borrar cuando se implemente bien
-    // lista_cursos.push_back(CursodeExtension(1, "Curso de Python"));
-    // lista_cursos.push_back(CursodeExtension(2, "Curso de Docker"));
-    // lista_cursos.push_back(CursodeExtension(3, "Curso de TypeScript"));
-    // lista_cursos.push_back(CursodeExtension(4, "Curso de Cocina"));
+int main(int argc, char const *argv[])
+{   
 
-    
-    Database db = Database(lista_cursos, usuarios_registrados);
 
     std::string nombre, apellidos, dni, correo;
     char aux[MAX_LONGITUD];
@@ -57,7 +57,7 @@ int main(int argc, char const *argv[])
 
     Usuario u = Usuario(1, nombre, apellidos, dni, correo, "Participante");
 
-    db.registrar_usuario(u);
+    database.registrar_usuario(u);
     while(true){
 
         std::cout << "Seleccione a que curso de extension se desea apuntar: "<< std::endl;
@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
             exit(0);
         }
         
-        db.buscar_curso(opcion).añadir_usuario(u);
+        database.buscar_curso(opcion).añadir_usuario(u);
     }
 
 

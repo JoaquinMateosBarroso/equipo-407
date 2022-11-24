@@ -5,10 +5,6 @@
 #include <usuario.h>
 #include "database.h"
 
-Database::Database(std::list<CursodeExtension> cursos_extension, std::list<Usuario> usuarios_registrados){
-    _cursos_extension = cursos_extension;
-    _usuarios_registrados = usuarios_registrados;
-}
 
 CursodeExtension Database::buscar_curso(std::string const nombre) {
     for (auto it = _cursos_extension.begin(); it == _cursos_extension.end(); it++)
