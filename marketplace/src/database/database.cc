@@ -6,29 +6,15 @@
 #include "database.h"
 
 
-int Database::dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso)
+int  Database::dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso)
 {
-    // if (usuario.rol_=="Coordinador cursos"){
+      if (_cursos_extension.buscar_curso(nombre_curso).get_codigo()!=0){
+        return -1;
+    }
+        int n = get_n_cursos()+1;
+        _cursos_extension.push_back(CursodeExtension(n, nombre_curso,descripcion_curso ));
+        return n;
 
-    // }
-    //comprobar que usuario.rol == "Coordinador cursos"
-
-
-    //Al final del if devuelves true junto con el _cursos_extension.pushback(curso)
-
-    //Si algún curso se llama igual devolver false también
-    // Lo puedes comprobar con _cursos_extension.buscar_curso(curso.get_nombre())
-    
-    
-    //return false si no
-
-    
-    
-    
-    //*************************************************************************
-
-    // Miguel, lo de abajo es solo para pruebas. Cuando hagas esta funcion quita el return
-    return 2;
 }
 
 

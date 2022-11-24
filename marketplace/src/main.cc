@@ -139,7 +139,7 @@ void dar_alta_curso()
 
 
 int lista_cursos(){
-    cout << "¿De qué curso quiere ver información?";
+    cout << "¿De qué curso quiere ver información?: "<<endl;
     int j=1;
     for (auto i = database.begin(); i!=database.end(); i++)
     {
@@ -168,8 +168,8 @@ void informacion_curso(int n){
     {
         if (j==n){
             cout << "Código: " << i->get_codigo() << endl;
-            cout << "Nombre" << i->get_nombre() << endl;
-            cout << "Descripcion" << i->get_descripcion() << endl;
+            cout << "Nombre: " << i->get_nombre() << endl;
+            cout << "Descripcion: " << i->get_descripcion() << endl;
             if (usuario.get_rol() == "Coordinador cursos"){
                 lista_usuarios(i);
             }

@@ -27,6 +27,8 @@ class Database{
         int dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso);
         inline std::list<CursodeExtension>::iterator begin() {return _cursos_extension.begin();}
         inline std::list<CursodeExtension>::iterator end() {return _cursos_extension.end();}
+        int get_n_cursos() {return _cursos_extension.get_n_cursos();}
+
 };
 
 

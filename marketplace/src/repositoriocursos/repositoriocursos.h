@@ -22,6 +22,7 @@ class RepositorioCursos{
         inline std::list<CursodeExtension>::iterator end() {return _cursos_extension.end();}
         CursodeExtension buscar_curso(std::string const nombre);
         CursodeExtension buscar_curso(int const codigo);
+        inline int get_n_cursos(){return _cursos_extension.size();}
 
 };
 
