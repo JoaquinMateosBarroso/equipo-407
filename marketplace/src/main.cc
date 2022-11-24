@@ -151,6 +151,16 @@ int lista_cursos(){
     return atoi(&n);
 }
 
+void lista_usuarios(list<CursodeExtension>::iterator i)
+{
+    cout << "Usuarios:" << endl;
+    int k = 1;
+    for (auto j = i->get_participantes().begin(); j!= i->get_participantes().end(); j++){
+        cout << k << ".- " << j->get_nombre() << " " << j->get_apellidos() << 
+        ", de dni: " << j->get_dni();
+    }
+}
+
 void informacion_curso(int n){
     cls();
     int j=1;
@@ -160,7 +170,9 @@ void informacion_curso(int n){
             cout << "Código: " << i->get_codigo() << endl;
             cout << "Nombre" << i->get_nombre() << endl;
             cout << "Descripcion" << i->get_descripcion() << endl;
-            cout << "Usuarios" << "i->lista_usuarios() (Pendiente de implementar)" << endl;
+            if (usuario.get_rol() == "Coordinador cursos"){
+                lista_usuarios(i);
+            }
         }
     }
     cout << "Pulsa enter para salir de la página";
