@@ -186,6 +186,8 @@ int main(int argc, char const *argv[])
         case '1':
             switch (inicio_sesion())
             {
+                case '0':
+                    lista_cursos(); break;
                 //Usuario
                 case '1':
                     switch (pagina_usuario()){
@@ -202,9 +204,11 @@ int main(int argc, char const *argv[])
                             dar_alta_curso();
 
                     }
+                default: cout << "Tipo de usuario incorrecto" << endl; exit(0);
             }
         case '2':
-            registrar_usuario();
+            registrar_usuario(); break;
+        default: cout << "Error de elección" << endl; exit(0);
     }
 
 
