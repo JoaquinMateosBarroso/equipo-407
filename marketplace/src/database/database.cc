@@ -5,32 +5,8 @@
 #include <usuario.h>
 #include "database.h"
 
-Database::Database(std::list<CursodeExtension> cursos_extension, std::list<Usuario> usuarios_registrados){
-    _cursos_extension = cursos_extension;
-    _usuarios_registrados = usuarios_registrados;
-}
 
-CursodeExtension Database::buscar_curso(std::string const nombre) {
-    for (auto it = _cursos_extension.begin(); it == _cursos_extension.end(); it++)
-    {
-        if (it->get_nombre() == nombre) {
-            return *it;
-        }
-    }
-    return CursodeExtension(0, "empty", "empty");
-}
-
-CursodeExtension Database::buscar_curso(int const codigo) {
-    for (auto it = _cursos_extension.begin(); it == _cursos_extension.end(); it++)
-    {
-        if (it->get_codigo() == codigo) {
-            return *it;
-        }
-    }
-    return CursodeExtension(0, "empty", "empty");
-}
-
-bool Database::dar_alta_curso(Usuario usuario, CursodeExtension curso)
+int Database::dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso)
 {
     // if (usuario.rol_=="Coordinador cursos"){
 
@@ -41,6 +17,22 @@ bool Database::dar_alta_curso(Usuario usuario, CursodeExtension curso)
     //Al final del if devuelves true junto con el _cursos_extension.pushback(curso)
 
     //Si algún curso se llama igual devolver false también
-
+    // Lo puedes comprobar con _cursos_extension.buscar_curso(curso.get_nombre())
+    
+    
     //return false si no
+
+    
+    
+    
+    //*************************************************************************
+
+    // Miguel, lo de abajo es solo para pruebas. Cuando hagas esta funcion quita el return
+    return 2;
+}
+
+
+bool Database::login_usuario(const std::string &dni, const std::string &contrasena, Usuario &usuario){
+    if (_usuarios_registrados.existe_usuario_contrasena(dni, contrasena)) { usuario = _usuarios_registrados.buscar_usuario(dni); return true;}
+    else {return false;}
 }
