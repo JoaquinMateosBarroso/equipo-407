@@ -11,9 +11,9 @@
 int main(int argc, char const *argv[])
 {
     std::cout<<"Empieza la prueba"<<std::endl;
-    Usuario coordinador = Usuario(1, "fulanito", "fulanito", "fulanito", "fulanito", "Coordinador de curso de extension");
-    Usuario participante1 = Usuario(2, "menganito", "menganito", "menganito", "menganito", "Participante");
-    Usuario participante2 = Usuario(3, "otro", "otro", "otro", "otro", "Participante");
+    Usuario coordinador = Usuario(1, "fulanito", "fulanito", "fulanito", "fulanito", "abc", "Coordinador de curso de extension");
+    Usuario participante1 = Usuario(2, "menganito", "menganito", "menganito", "menganito", "abc", "Participante");
+    Usuario participante2 = Usuario(3, "otro", "otro", "otro", "otro", "abc", "Participante");
 
     std::cout<<"Se crea la base de datos"<<std::endl;
     
@@ -30,10 +30,10 @@ int main(int argc, char const *argv[])
 
 
     // Estos cursos deberian estar en cursos.txt
-    db -> dar_alta_curso(coordinador, CursodeExtension(1, "Curso de Python", "descriptcion"));
-    db -> dar_alta_curso(coordinador, CursodeExtension(2, "Curso de Docker", "descriptcion"));
-    db -> dar_alta_curso(coordinador, CursodeExtension(3, "Curso de TypeScript", "descriptcion"));
-    db -> dar_alta_curso(coordinador, CursodeExtension(4, "Curso de Cocina", "descriptcion"));
+    db -> dar_alta_curso(coordinador, "Curso de Python", "descriptcion");
+    db -> dar_alta_curso(coordinador, "Curso de Docker", "descriptcion");
+    db -> dar_alta_curso(coordinador, "Curso de TypeScript", "descriptcion");
+    db -> dar_alta_curso(coordinador, "Curso de Cocina", "descriptcion");
 
     std::cout<<"El participante 1 se inscribe en el curso 2"<<std::endl;
 

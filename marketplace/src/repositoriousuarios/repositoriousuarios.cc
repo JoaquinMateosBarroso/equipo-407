@@ -17,14 +17,16 @@ RepositorioUsuarios::RepositorioUsuarios(std::string nombre_fichero){
     std::FILE *fs;
     if (fs = fopen(nombre_archivo.c_str(), "r")){
         unsigned* usuario = (unsigned*)std::malloc(sizeof(unsigned));
-        char dni[255], nombre[255], apellidos[255], correo[255], rol[255];
-        while(std::fscanf(fs, "%u;%254[^;];%254[^;];%254[^;];%254[^;];%254[^;];\n", 
+        char dni[255], nombre[255], apellidos[255], correo[255], contrasena[255], rol[255];
+        while(std::fscanf(fs, "%u;%254[^;];%254[^;];%254[^;];%254[^;];%254[^;];%254[^;];\n", 
                             usuario, 
                             dni, 
                             nombre, 
                             apellidos, 
-                            correo, rol) != EOF){
-            Usuario u(*usuario, std::string(nombre), std::string(apellidos), std::string(dni), std::string(correo), std::string(rol));
+                            correo,
+                            contrasena,
+                            rol) != EOF){
+            Usuario u(*usuario, std::string(nombre), std::string(apellidos), std::string(dni), std::string(correo), std::string(contrasena), std::string(rol));
             _usuarios.push_back(u);
         };
         fclose(fs);
@@ -41,12 +43,13 @@ void RepositorioUsuarios::persistir_usuario(Usuario usuario){
     std::FILE *fs;
     if (fs=fopen(nombre_archivo.c_str(), "a"))
     {
-        fprintf(fs, "%u;%s;%s;%s;%s;%s;\n", 
+        fprintf(fs, "%u;%s;%s;%s;%s;%s;%s;\n", 
                 usuario.get_usuario(), 
                 usuario.get_dni().c_str(), 
                 usuario.get_nombre().c_str(), 
                 usuario.get_apellidos().c_str(), 
                 usuario.get_correo().c_str(), 
+                usuario.get_contrasena().c_str(),
                 usuario.get_rol().c_str());
         fclose(fs);
     }else
@@ -67,11 +70,12 @@ Usuario RepositorioUsuarios::buscar_usuario(std::string const dni) {
                 it -> get_apellidos(),
                 it -> get_dni(),
                 it -> get_correo(),
+                it -> get_contrasena(),
                 it -> get_rol()
             );
         }
     }
-    return Usuario(0, "empty", "empty", "empty", "empty", "empty");
+    return Usuario(0, "empty", "empty", "empty", "empty", "empty", "empty");
 }
 
 void RepositorioUsuarios::push_back(Usuario usuario) {
@@ -80,4 +84,16 @@ void RepositorioUsuarios::push_back(Usuario usuario) {
         persistir_usuario(usuario);
         _usuarios.push_back(usuario);
     }
+}
+
+
+bool RepositorioUsuarios::existe_usuario_contrasena(const std::string &dni,const std::string &contrasena){
+    for (auto it = _usuarios.begin(); it != _usuarios.end(); it++)
+    {
+        if (it->get_dni() == dni) {
+            if (it->get_contrasena() == contrasena) {return true;}
+            else {return false;}
+        }
+    }
+    return false;
 }

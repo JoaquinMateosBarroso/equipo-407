@@ -6,27 +6,7 @@
 #include "database.h"
 
 
-CursodeExtension Database::buscar_curso(std::string const nombre) {
-    for (auto it = _cursos_extension.begin(); it == _cursos_extension.end(); it++)
-    {
-        if (it->get_nombre() == nombre) {
-            return *it;
-        }
-    }
-    return CursodeExtension(0, "empty", "empty");
-}
-
-CursodeExtension Database::buscar_curso(int const codigo) {
-    for (auto it = _cursos_extension.begin(); it == _cursos_extension.end(); it++)
-    {
-        if (it->get_codigo() == codigo) {
-            return *it;
-        }
-    }
-    return CursodeExtension(0, "empty", "empty");
-}
-
-bool Database::dar_alta_curso(Usuario usuario, CursodeExtension curso)
+int Database::dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso)
 {
     //comprobar que usuario.rol == "Coordinador cursos"
 
@@ -42,9 +22,14 @@ bool Database::dar_alta_curso(Usuario usuario, CursodeExtension curso)
     
     
     
-    //###########################################################################################################
+    //*************************************************************************
 
-    // Miguel, lo de abajo es solo para la prueba de persistencia. Cuando hagas esta funcion quita a partir de aqui
-    _cursos_extension.push_back(curso);
-    return true;
+    // Miguel, lo de abajo es solo para pruebas. Cuando hagas esta funcion quita el return
+    return 2;
+}
+
+
+bool Database::login_usuario(const std::string &dni, const std::string &contrasena, Usuario &usuario){
+    if (_usuarios_registrados.existe_usuario_contrasena(dni, contrasena)) { usuario = _usuarios_registrados.buscar_usuario(dni); return true;}
+    else {return false;}
 }

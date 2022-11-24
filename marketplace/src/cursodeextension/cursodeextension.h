@@ -1,7 +1,6 @@
 #ifndef CURSOEEXTENSION_H
 #define CURSOEEXTENSION_H
-//person.h
-//A simple person class
+
 
 #include <string>
 #include <list>
@@ -27,7 +26,7 @@ class CursodeExtension{
 
     inline int get_codigo() {return _codigo;}
 
-    inline void añadir_usuario(Usuario const u){_participantes.push_back(u);}
+    inline void añadir_usuario(Usuario const u) {_participantes.push_back(u);}
 
 };
 
