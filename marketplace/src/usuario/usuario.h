@@ -18,6 +18,13 @@ class Usuario{
         std::string dni, std::string correo, std::string rol) : 
         usuario_(usuario), nombre_(nombre), apellidos_(apellidos),
         dni_(dni), correo_(correo), rol_(rol) {}
+        inline unsigned get_usuario(){return usuario_;}
+        inline std::string get_nombre(){return nombre_;}
+        inline std::string get_apellidos(){return apellidos_;}
+        inline std::string get_dni(){return dni_;}
+        inline std::string get_correo(){return correo_;}
+        inline std::string get_rol(){return rol_;}
+
 };
 
 #endif
