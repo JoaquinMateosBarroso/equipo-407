@@ -32,10 +32,13 @@ CursodeExtension Database::buscar_curso(int const codigo) {
 
 bool Database::dar_alta_curso(Usuario usuario, CursodeExtension curso)
 {
+    // if (usuario.rol_=="Coordinador cursos"){
+
+    // }
     //comprobar que usuario.rol == "Coordinador cursos"
 
 
-    //Al final del if devuelves true
+    //Al final del if devuelves true junto con el _cursos_extension.pushback(curso)
 
     //Si algún curso se llama igual devolver false también
 
