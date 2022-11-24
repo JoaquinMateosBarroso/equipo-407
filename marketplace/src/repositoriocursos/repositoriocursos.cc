@@ -9,7 +9,7 @@
 // ###########################################################################################
 //                                      F I C H E R O S
 
-// Constructor que recoge al ser ejecutado recoge los datos del fichero dado por nombre
+// Constructor que recoge al ser ejecutado recoge los datos del fichero dado por nombre, si no existe, lo crea
 RepositorioCursos::RepositorioCursos(std::string nombre_fichero){
     _nombre = nombre_fichero;
     std::string nombre_archivo = _nombre + ".txt";
@@ -29,7 +29,7 @@ RepositorioCursos::RepositorioCursos(std::string nombre_fichero){
     }
     
 }
-// Funcion que guarda en fichero
+// Funcion que guarda en fichero el curso
 void RepositorioCursos::persistir_curso(CursodeExtension curso){
     std::string nombre_archivo = _nombre + ".txt";
     std::FILE *fs;
