@@ -7,17 +7,20 @@
 #include <list>
 #include <usuario.h>
 #include <cursodeextension.h>
+#include <repositoriocursos.h>
+#include <repositoriousuarios.h>
+
 
 class Database{
     private:
-        std::list<CursodeExtension> _cursos_extension;
-        std::list<Usuario> _usuarios_registrados;
+        RepositorioCursos _cursos_extension;
+        RepositorioUsuarios _usuarios_registrados;
     public:
-        Database(std::list<CursodeExtension> cursos_extension, std::list<Usuario> usuarios_registrados);
+        Database():_cursos_extension("cursos"), _usuarios_registrados("usuarios"){};
         inline void registrar_usuario(Usuario const usuario) {_usuarios_registrados.push_back(usuario);}
         Usuario login_usuario(std::string const dni);
-        CursodeExtension buscar_curso(std::string const nombre);
-        CursodeExtension buscar_curso(int const codigo);
+        inline CursodeExtension buscar_curso(std::string const nombre){return _cursos_extension.buscar_curso(nombre);}
+        inline CursodeExtension buscar_curso(int const codigo){return _cursos_extension.buscar_curso(codigo);}
         bool dar_alta_curso(Usuario usuario, CursodeExtension curso);
 };
 
