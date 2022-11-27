@@ -28,11 +28,12 @@ void cls()
     system("clear");
   #endif
 }
+
+
+
 //crear Database de manera global
 Database database = Database();
 Usuario usuario;
-
-
 
 
 char inicio_sesion()
@@ -57,6 +58,7 @@ char inicio_sesion()
     }
     return n;
 }
+
 
 void registrar_usuario()
 {
@@ -92,10 +94,12 @@ void registrar_usuario()
         
 }
 
+
 char pagina_coordinador_cursos()
 {    
     cout << "¿Qué quiere hacer?" << endl;
     cout << "1.- Dar de alta un nuevo curso" << endl;
+    cout << "2.- Ver información de cursos" << endl;
     char n;
     cin.getline(&n, 100, '\n');
     cls();
@@ -139,11 +143,12 @@ void dar_alta_curso()
 
 
 int lista_cursos(){
+    cls();
     cout << "¿De qué curso quiere ver información?: "<<endl;
     int j=1;
     for (auto i = database.begin(); i!=database.end(); i++)
     {
-        cout << j << ".- " << i->get_nombre();
+        cout << j << ".- " << i->get_nombre() << endl;
         j++;
     }
     char n;
@@ -151,32 +156,65 @@ int lista_cursos(){
     return atoi(&n);
 }
 
+
 void lista_usuarios(list<CursodeExtension>::iterator i)
 {
-    cout << "Usuarios:" << endl;
+    cout << endl << "Usuarios:" << endl;
     int k = 1;
-    for (auto j = i->get_participantes().begin(); j!= i->get_participantes().end(); j++){
+    auto lista = i->get_participantes().lista_entera();
+    for (auto j = lista.begin(); j!= lista.end(); j++){
         cout << k << ".- " << j->get_nombre() << " " << j->get_apellidos() << 
-        ", de dni: " << j->get_dni();
+        ", de dni: " << j->get_dni() << endl;
     }
+    cout << endl;
 }
+
+
+bool anyadir_usuario(int codigo){
+    for (auto i = database.begin(); i != database.end(); i++)
+    {
+        if (i->get_codigo() == codigo){i->añadir_usuario(usuario); return true;}
+    }
+    return false;
+}
+
 
 void informacion_curso(int n){
     cls();
     int j=1;
+    CursodeExtension cursoextension(0, "empty", "empty");
     for (auto i = database.begin(); i!=database.end(); i++)
     {
         if (j==n){
+            cursoextension = *i;
             cout << "Código: " << i->get_codigo() << endl;
             cout << "Nombre: " << i->get_nombre() << endl;
             cout << "Descripcion: " << i->get_descripcion() << endl;
-            if (usuario.get_rol() == "Coordinador cursos"){
+            if (usuario.get_rol() == "Coordinador Cursos"){
                 lista_usuarios(i);
             }
+            if (usuario.get_rol() == "Usuario"){
+                cout << "\nIntroduzca \"R\" para registrarse en este curso\n";
+            }
         }
+        j++;
     }
-    cout << "Pulsa enter para salir de la página";
-    cin.ignore();
+    if (usuario.get_rol() == "Usuario"){
+        string curso;
+        getline(cin, curso);
+        if (curso[0] == 'R' or curso[0] == 'r'){
+            cursoextension.añadir_usuario(usuario);
+            cout << "Usuario anyadido" << endl; exit(0);
+        }
+    else{cout << "No se reconoce el texto introducido \n"; exit(0);}
+    }
+
+    
+    else{
+        cout << endl << "Pulsa enter para salir de la página";
+        cin.ignore(); 
+        exit(0);
+    }
 }
 
 
@@ -199,7 +237,7 @@ int main(int argc, char const *argv[])
             switch (inicio_sesion())
             {
                 case '0':
-                    lista_cursos(); break;
+                    informacion_curso(lista_cursos());exit(1);
                 //Usuario
                 case '1':
                     switch (pagina_usuario()){
@@ -213,10 +251,11 @@ int main(int argc, char const *argv[])
                 case '2':
                     switch (pagina_coordinador_cursos()){
                         case '1':
-                            dar_alta_curso();
-
+                            dar_alta_curso(); exit(1);
+                        case '2':
+                            informacion_curso(lista_cursos()); exit(1);
                     }
-                default: cout << "Tipo de usuario incorrecto" << endl; exit(0);
+                default: cout << "Error en introducción de datos" << endl; exit(1);
             }
         case '2':
             registrar_usuario(); break;
