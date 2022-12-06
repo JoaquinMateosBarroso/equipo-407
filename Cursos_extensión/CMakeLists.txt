@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Enables testing/add_test() for this directory and below
-# enable_testing()
+enable_testing()
 
 add_subdirectory(src)
-# add_subdirectory(tests)
+add_subdirectory(tests)
