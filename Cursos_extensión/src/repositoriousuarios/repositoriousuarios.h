@@ -21,7 +21,7 @@ class RepositorioUsuarios{
     public:
         RepositorioUsuarios(std::string nombre_fichero);
         int get_n_usuarios() {return _usuarios.size();}
-        void push_back(Usuario usuario);
+        bool push_back(Usuario usuario);
         inline std::list<Usuario>::iterator begin() {return _usuarios.begin();}
         inline std::list<Usuario>::iterator end() {return _usuarios.end();}
         Usuario buscar_usuario(std::string const dni);

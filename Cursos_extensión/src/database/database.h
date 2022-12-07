@@ -17,7 +17,8 @@ class Database{
     public:
         Database() : _cursos_extension("cursos"), _usuarios_registrados("usuarios"){}
         //Usuarios
-        void inline registrar_usuario(Usuario const &usuario) {_usuarios_registrados.push_back(usuario);}
+        // Devuelve true si lo ha podido registrar y false si ya existia
+        bool inline registrar_usuario(Usuario const &usuario) {return _usuarios_registrados.push_back(usuario);}
         bool login_usuario(const std::string &dni, const std::string &contrasena, Usuario &usuario);
         int get_n_usuarios() {return _usuarios_registrados.get_n_usuarios();}
 

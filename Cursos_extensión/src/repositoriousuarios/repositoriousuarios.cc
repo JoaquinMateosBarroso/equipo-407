@@ -78,12 +78,14 @@ Usuario RepositorioUsuarios::buscar_usuario(std::string const dni) {
     return Usuario(0, "empty", "empty", "empty", "empty", "empty", "empty");
 }
 
-void RepositorioUsuarios::push_back(Usuario usuario) {
+bool RepositorioUsuarios::push_back(Usuario usuario) {
     Usuario encontrado = buscar_usuario(usuario.get_dni());
     if (encontrado.get_usuario() == 0){
         persistir_usuario(usuario);
         _usuarios.push_back(usuario);
+        return true;
     }
+    return false;
 }
 
 
