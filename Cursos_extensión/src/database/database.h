@@ -1,5 +1,5 @@
-#ifndef DATABSE_H
-#define DATABSE_H
+#ifndef DATABASE_H
+#define DATABASE_H
 
 
 #include <string>
@@ -29,6 +29,10 @@ class Database{
         inline std::list<CursodeExtension>::iterator begin() {return _cursos_extension.begin();}
         inline std::list<CursodeExtension>::iterator end() {return _cursos_extension.end();}
         int get_n_cursos() {return _cursos_extension.get_n_cursos();}
+
+        // estadisticas
+        std::map <std::string, std::string> get_estadisticas(CursodeExtension &curso);
+
 
 };
 

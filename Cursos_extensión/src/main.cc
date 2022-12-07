@@ -97,8 +97,10 @@ void registrar_usuario()
         
 }
 
-char pagina_coordinador_recursos()
+
+char pagina_usuario()
 {    
+    cls();
     cout << "¿Qué quiere hacer?" << endl;
     cout << "1.- Ver información de cursos" << endl;
     char n;
@@ -109,6 +111,7 @@ char pagina_coordinador_recursos()
 
 char pagina_coordinador_cursos()
 {    
+    cls();
     cout << "¿Qué quiere hacer?" << endl;
     cout << "1.- Dar de alta un nuevo curso" << endl;
     cout << "2.- Ver información de cursos" << endl;
@@ -118,9 +121,9 @@ char pagina_coordinador_cursos()
     return n;
 }
 
-
-char pagina_usuario()
+char pagina_coordinador_recursos()
 {    
+    cls();
     cout << "¿Qué quiere hacer?" << endl;
     cout << "1.- Ver información de cursos" << endl;
     char n;
@@ -128,6 +131,8 @@ char pagina_usuario()
     cls();
     return n;
 }
+
+
 
 
 void dar_alta_curso()
@@ -142,7 +147,7 @@ void dar_alta_curso()
     getline(cin, nombre_curso);
     cout << "Introduzca una descripción del curso de extension: ";
     getline(cin, descripcion);
-    cout << "Introduzca una descripción del curso de extension: ";
+    cout << "Introduzca el aforo máximo curso de extension: ";
     getline(cin, max_str);
     int codigo;
     int max = stoi(max_str);
@@ -170,6 +175,18 @@ int lista_cursos(){
     char n;
     cin.getline(&n, 100, '\n');
     return atoi(&n);
+}
+
+
+void mostrar_estadisticas(CursodeExtension &curso){
+    cout << "------------------------------------------------------------------" << endl;
+    map<string, string> estadisticas = database.get_estadisticas(curso);
+    for (auto i = estadisticas.begin(); i != estadisticas.end(); i++)
+    {
+        cout << i->first << ": " << i->second << endl;
+    }
+    cout << curso.get_max();
+
 }
 
 
@@ -220,6 +237,8 @@ void informacion_curso(int n){
             lista_recursos(i);
             if (usuario.get_rol() == "Coordinador Cursos"){
                 lista_usuarios(i);
+
+                mostrar_estadisticas(cursoextension);
             }
             if (usuario.get_rol() == "Usuario"){
                 cout << "\nIntroduzca \"R\" para registrarse en este curso\n";
@@ -311,6 +330,7 @@ int main(int argc, char const *argv[])
             }
         case '2':
             registrar_usuario(); break;
+
         default: cout << "Error de elección" << endl; exit(0);
     }
 

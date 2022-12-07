@@ -4,9 +4,11 @@
 
 #include <string>
 #include <list>
+#include <map>
 #include <repositoriousuarios.h>
 #include <repositoriorecursos.h>
 #include "usuario.h"
+//#include <database.h>
 
 class CursodeExtension{
     private:
@@ -36,8 +38,7 @@ class CursodeExtension{
     bool añadir_usuario(Usuario const u);
     bool añadir_recurso(std::string recurso) {return _lista_recursos.push_back(recurso);};
 
-    // implementar estadisticas
-    // hacer un get_estadisticas que sea un map
+
 
 };
 

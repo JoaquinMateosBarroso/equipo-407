@@ -27,7 +27,6 @@ class RepositorioUsuarios{
         Usuario buscar_usuario(std::string const dni);
         bool existe_usuario_contrasena(const std::string &dni,const std::string &contrasena);
 
-        //Esto es lentísimo pero estoy cansado de que todo vaya mal, mientras no haya 10k cursos todo va a ir bien
         std::list<Usuario> lista_entera() {return _usuarios;}
 };
 

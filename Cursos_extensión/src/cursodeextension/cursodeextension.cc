@@ -1,4 +1,3 @@
-#include <string.h>
 #include <list>
 #include <iostream>
 #include "cursodeextension.h"
@@ -25,3 +24,5 @@ bool CursodeExtension::añadir_usuario(Usuario const u){
         return true;
     }
 }
+
+
