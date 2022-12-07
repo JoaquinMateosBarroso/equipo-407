@@ -5,6 +5,7 @@
 #include <string>
 #include <list>
 #include <repositoriousuarios.h>
+#include <repositoriorecursos.h>
 #include "usuario.h"
 
 class CursodeExtension{
@@ -16,9 +17,10 @@ class CursodeExtension{
         std::string _coordinador;
         RepositorioUsuarios _participantes;
         RepositorioUsuarios _lista_espera;
+        RepositorioRecursos _lista_recursos;
     public:
     //Constructor por parametros
-    CursodeExtension(int codigo, std::string nombre, std::string decripcion);
+    CursodeExtension(int codigo, std::string nombre, std::string decripcion, int max);
 
     inline std::string get_nombre() {return _nombre;}
 
@@ -28,7 +30,8 @@ class CursodeExtension{
 
     inline int get_codigo() {return _codigo;}
 
-    inline void añadir_usuario(Usuario const u) {_participantes.push_back(u);}
+    bool añadir_usuario(Usuario const u);
+    bool añadir_recurso(std::string recurso) {return _lista_recursos.push_back(recurso);};
 
     // implementar estadisticas
     // hacer un get_estadisticas que sea un map
