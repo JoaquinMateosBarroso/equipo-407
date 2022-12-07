@@ -43,6 +43,7 @@ char inicio_sesion()
     cout << "0.- Visitante" << endl;
     cout << "1.- Usuario" << endl;
     cout << "2.- Coordinador de cursos de extensión" << endl;
+    cout << "3.- Coordinador de recursos" << endl;
     char n;
     cin.getline(&n, 5, '\n');
     if (n != '0'){
@@ -66,12 +67,14 @@ void registrar_usuario()
     cout << "Registrar a un:" << endl;
     cout << "1.- Usuario" << endl;
     cout << "2.- Coordinador de cursos de extensión" << endl;
+    cout << "3.- Coordinador de recursos" << endl;
     char n;
     cin.getline(&n, 5, '\n');
     string rol;
     switch (n){
         case '1': rol = "Usuario"; break;
         case '2': rol = "Coordinador Cursos"; break;
+        case '3': rol = "Coordinador Recursos"; break;
 
         default: cout << "Erróneo"; exit(EXIT_FAILURE);
     }
@@ -94,6 +97,15 @@ void registrar_usuario()
         
 }
 
+char pagina_coordinador_recursos()
+{    
+    cout << "¿Qué quiere hacer?" << endl;
+    cout << "1.- Ver información de cursos" << endl;
+    char n;
+    cin.getline(&n, 100, '\n');
+    cls();
+    return n;
+}
 
 char pagina_coordinador_cursos()
 {    
@@ -124,13 +136,17 @@ void dar_alta_curso()
     //pedir datos
     string nombre_curso;
     string descripcion;
+    string max_str;
 
     cout << "Introduzca el nombre del curso de extension: ";
     getline(cin, nombre_curso);
     cout << "Introduzca una descripción del curso de extension: ";
     getline(cin, descripcion);
+    cout << "Introduzca una descripción del curso de extension: ";
+    getline(cin, max_str);
     int codigo;
-    if ((codigo = database.dar_alta_curso(usuario, nombre_curso, descripcion)) == -1){
+    int max = stoi(max_str);
+    if ((codigo = database.dar_alta_curso(usuario, nombre_curso, descripcion, max)) == -1){
         cout << "Ya existe otro curso con el mismo nombre, no se ha podido insertar el curso";
         exit(EXIT_SUCCESS);
     }
@@ -169,6 +185,17 @@ void lista_usuarios(list<CursodeExtension>::iterator i)
     cout << endl;
 }
 
+void lista_recursos(list<CursodeExtension>::iterator i)
+{
+    cout << endl << "Recursos:" << endl;
+    int k = 1;
+    auto lista = i->get_recursos().lista_entera();
+    for (auto j = lista.begin(); j!= lista.end(); j++){
+        cout << k << ".- " << *j << endl;
+    }
+    cout << endl;
+}
+
 
 bool anyadir_usuario(int codigo){
     for (auto i = database.begin(); i != database.end(); i++)
@@ -182,7 +209,7 @@ bool anyadir_usuario(int codigo){
 void informacion_curso(int n){
     cls();
     int j=1;
-    CursodeExtension cursoextension(0, "empty", "empty");
+    CursodeExtension cursoextension(0, "empty", "empty", 0);
     for (auto i = database.begin(); i!=database.end(); i++)
     {
         if (j==n){
@@ -190,11 +217,15 @@ void informacion_curso(int n){
             cout << "Código: " << i->get_codigo() << endl;
             cout << "Nombre: " << i->get_nombre() << endl;
             cout << "Descripcion: " << i->get_descripcion() << endl;
+            lista_recursos(i);
             if (usuario.get_rol() == "Coordinador Cursos"){
                 lista_usuarios(i);
             }
             if (usuario.get_rol() == "Usuario"){
                 cout << "\nIntroduzca \"R\" para registrarse en este curso\n";
+            }
+            if (usuario.get_rol() == "Coordinador Recursos"){
+                cout << "\nIntroduzca \"R\" para anyadir un recurso a este curso\n";
             }
         }
         j++;
@@ -206,10 +237,24 @@ void informacion_curso(int n){
             cursoextension.añadir_usuario(usuario);
             cout << "Usuario anyadido" << endl; exit(0);
         }
-    else{cout << "No se reconoce el texto introducido \n"; exit(0);}
+        else{cout << "No se reconoce el texto introducido \n"; exit(0);}
     }
 
-    
+    if(usuario.get_rol() == "Coordinador Recursos"){
+        string curso;
+        getline(cin, curso);
+        if (curso[0] == 'R' or curso[0] == 'r'){
+            string recurso;
+            cout << "Introduzca el nombre recurso que desea introducir: ";
+            getline(cin, recurso);
+            if (cursoextension.añadir_recurso(recurso)){
+                cout << "Recurso anyadido" << endl; exit(0);
+            }else {
+                cout << "Este recurso ya existe en el curso de extension" << endl; exit(0);
+            }
+        }
+        else{cout << "No se reconoce el texto introducido \n"; exit(0);}
+    }
     else{
         cout << endl << "Pulsa enter para salir de la página";
         cin.ignore(); 
@@ -254,6 +299,13 @@ int main(int argc, char const *argv[])
                             dar_alta_curso(); exit(1);
                         case '2':
                             informacion_curso(lista_cursos()); exit(1);
+                    }
+                //Coordinador Cursos    
+                case '3':
+                    switch (pagina_coordinador_recursos()){
+                        case '1':
+                            informacion_curso(lista_cursos()); break;
+                        case '2':break;
                     }
                 default: cout << "Error en introducción de datos" << endl; exit(1);
             }

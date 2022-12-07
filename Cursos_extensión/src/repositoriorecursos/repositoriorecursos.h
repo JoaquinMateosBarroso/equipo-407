@@ -24,7 +24,6 @@ class RepositorioRecursos{
         inline std::list<std::string>::iterator end() {return _recursos.end();}
         bool existe_recurso(std::string const recurso);
 
-        //Esto es lentísimo pero estoy cansado de que todo vaya mal, mientras no haya 10k cursos todo va a ir bien
         std::list<std::string> lista_entera() {return _recursos;}
 };
 

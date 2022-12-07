@@ -15,10 +15,10 @@ RepositorioCursos::RepositorioCursos(std::string nombre_fichero){
     std::string nombre_archivo = _nombre + ".txt";
     std::FILE *fs;
     if (fs = fopen(nombre_archivo.c_str(), "r")){
-        int codigo;
+        int codigo, max;
         char nombre[255], descripcion[255];
-        while(std::fscanf(fs, "%i;%254[^;];%254[^;];\n", &codigo, nombre, descripcion) != EOF){
-            CursodeExtension c(codigo, std::string(nombre), std::string(descripcion));
+        while(std::fscanf(fs, "%i;%254[^;];%254[^;];%i;\n", &codigo, nombre, descripcion, &max) != EOF){
+            CursodeExtension c(codigo, std::string(nombre), std::string(descripcion), max);
             _cursos_extension.push_back(c);
         };
         fclose(fs);
@@ -35,10 +35,11 @@ void RepositorioCursos::persistir_curso(CursodeExtension curso){
     std::FILE *fs;
     if (fs=fopen(nombre_archivo.c_str(), "a"))
     {
-        fprintf(fs, "%i;%s;%s;\n", 
+        fprintf(fs, "%i;%s;%s;%i;\n", 
                 curso.get_codigo(),
                 curso.get_nombre().c_str(),
-                curso.get_descripcion().c_str());
+                curso.get_descripcion().c_str(),
+                curso.get_max());
         fclose(fs);
     }else
     {
@@ -56,7 +57,7 @@ CursodeExtension RepositorioCursos::buscar_curso(std::string const nombre) {
             return *it;
         }
     }
-    return CursodeExtension(0, "empty", "empty");
+    return CursodeExtension(0, "empty", "empty", 0);
 }
 
 CursodeExtension RepositorioCursos::buscar_curso(int const codigo) {
@@ -66,7 +67,7 @@ CursodeExtension RepositorioCursos::buscar_curso(int const codigo) {
             return *it;
         }
     }
-    return CursodeExtension(0, "empty", "empty");
+    return CursodeExtension(0, "empty", "empty", 0);
 }
 
 void RepositorioCursos::push_back(CursodeExtension curso) {

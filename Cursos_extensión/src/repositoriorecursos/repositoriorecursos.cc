@@ -3,8 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
-#include <cursodeextension.h>
-#include <usuario.h>
 #include "repositoriorecursos.h"
 
 // ###########################################################################################

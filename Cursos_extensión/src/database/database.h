@@ -25,7 +25,7 @@ class Database{
         //Cursos
         inline CursodeExtension buscar_curso(std::string const nombre){return _cursos_extension.buscar_curso(nombre);}
         inline CursodeExtension buscar_curso(int const codigo){return _cursos_extension.buscar_curso(codigo);}
-        int dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso);
+        int dar_alta_curso(Usuario usuario, std::string nombre_curso, std::string descripcion_curso, int max);
         inline std::list<CursodeExtension>::iterator begin() {return _cursos_extension.begin();}
         inline std::list<CursodeExtension>::iterator end() {return _cursos_extension.end();}
         int get_n_cursos() {return _cursos_extension.get_n_cursos();}

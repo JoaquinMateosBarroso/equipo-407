@@ -27,8 +27,11 @@ class CursodeExtension{
     inline std::string get_descripcion() {return _descripcion;}
     
     inline RepositorioUsuarios get_participantes() {return _participantes;}
+    inline RepositorioUsuarios get_lista_espera() {return _lista_espera;}
+    inline RepositorioRecursos get_recursos() {return _lista_recursos;}
 
     inline int get_codigo() {return _codigo;}
+    inline int get_max() {return _max;}
 
     bool añadir_usuario(Usuario const u);
     bool añadir_recurso(std::string recurso) {return _lista_recursos.push_back(recurso);};
