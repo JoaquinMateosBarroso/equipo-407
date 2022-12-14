@@ -15,7 +15,6 @@ int  Database::dar_alta_curso(Usuario usuario, std::string nombre_curso, std::st
         int n = get_n_cursos()+1;
         _cursos_extension.push_back(CursodeExtension(n, nombre_curso,descripcion_curso, max ));
         return n;
-
 }
 
 

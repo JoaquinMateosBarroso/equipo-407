@@ -30,12 +30,12 @@ class Usuario{
         inline std::string get_rol(){return rol_;}
 
         inline void set_usuario(int usuario){usuario_ = usuario;}
-        inline void set_nombre(std::string &a){nombre_ = a;}
-        inline void set_apellidos(std::string &a){apellidos_ = a;}
-        inline void set_dni(std::string &a){dni_ = a;}
-        inline void set_correo(std::string &a){correo_ = a;}
-        inline void set_contrasena(std::string &a){contrasena_ = a;}
-        inline void set_rol(std::string &a){rol_ = a;}
+        inline void set_nombre(const std::string &a){nombre_ = a;}
+        inline void set_apellidos(const std::string &a){apellidos_ = a;}
+        inline void set_dni(const std::string &a){dni_ = a;}
+        inline void set_correo(const std::string &a){correo_ = a;}
+        inline void set_contrasena(const std::string &a){contrasena_ = a;}
+        inline void set_rol(const std::string &a){rol_ = a;}
 
 };
 

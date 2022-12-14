@@ -19,10 +19,9 @@ bool CursodeExtension::añadir_usuario(Usuario const u){
     if (_participantes.get_n_usuarios() == _max){
         _lista_espera.push_back(u);
         return false;
-    }else{
+    }
+    else{
         _participantes.push_back(u);
         return true;
     }
 }
-
-

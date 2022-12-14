@@ -18,7 +18,7 @@ using namespace std;
 
 #ifdef _WIN32
   #include<windows.h>
-#endif  
+#endif
 
 void cls()
 {
@@ -32,7 +32,7 @@ void cls()
 
 
 //crear Database de manera global
-Database database = Database();
+Database database;
 Usuario usuario;
 
 
@@ -92,9 +92,7 @@ void registrar_usuario()
     getline(cin, contrasena);
 
     database.registrar_usuario(Usuario(database.get_n_usuarios(),
-                nombre, apellidos, dni, correo, contrasena, rol));
-
-        
+                nombre, apellidos, dni, correo, contrasena, rol));        
 }
 
 
