@@ -32,8 +32,8 @@ std::map <std::string, std::string> Database::get_estadisticas(CursodeExtension 
         n_total_usuarios += i->get_participantes().get_n_usuarios();
     }
 
-    estadisticas["Porcentaje de aforo cubierto"] = std::to_string(round( float(curso.get_participantes().get_n_usuarios()) / float(curso.get_max()) * 100 )).substr(0, 4) + "%";
-    estadisticas["Porcentaje de usuarios de la página inscritos en el curso"] = std::to_string(round( float(curso.get_participantes().get_n_usuarios()) / get_n_usuarios() * 100)).substr(0, 4) + "%";
+    estadisticas["Porcentaje de aforo cubierto"] = (curso.get_max() == 0) ? "1" : std::to_string(round( float(curso.get_participantes().get_n_usuarios()) / float(curso.get_max()) * 100 )).substr(0, 4) + "%";
+    estadisticas["Porcentaje de usuarios de la página inscritos en el curso"] = (get_n_usuarios() == 0) ? "0" : std::to_string(round( float(curso.get_participantes().get_n_usuarios()) / get_n_usuarios() * 100)).substr(0, 4) + "%";
 
 
 

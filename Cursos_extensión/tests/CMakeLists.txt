@@ -40,3 +40,9 @@ add_executable(historia6_test historia6_test.cc)
 target_link_libraries(historia6_test
   PRIVATE GTest::GTest database)
 add_test(historia6_gtests historia6_test)
+
+# Testing historia5
+add_executable(historia5_test historia5_test.cc)
+target_link_libraries(historia5_test
+  PRIVATE GTest::GTest database)
+add_test(historia5_gtests historia5_test)

@@ -118,6 +118,7 @@ char pagina_coordinador_cursos()
     cout << "2.- Ver información de cursos" << endl;
     char n;
     cin.getline(&n, 100, '\n');
+    if (n != '1' and n != '2') {cout << "Opción errónea" << endl; exit(1);}
     cls();
     return n;
 }
@@ -289,12 +290,9 @@ int main(int argc, char const *argv[])
 {
     cls();
 
-
-    database.registrar_usuario(Usuario(2, "Joaquin", "mateos", "459","parapa", "123", "Usuario"))
-;
-
     cout << "1.-Entrar a la página" << endl;
     cout << "2.-Registrar un nuevo usuario" << endl;
+    cout << "3.-Acceder a datos del administrador del sistema" << endl;
     char n;
     cin.getline(&n, 100, '\n');
     switch (n){
@@ -331,6 +329,9 @@ int main(int argc, char const *argv[])
             }
         case '2':
             registrar_usuario(); break;
+
+        case '3':
+            cout << database.datos_administrador << endl; break;
 
         default: cout << "Error de elección" << endl; exit(0);
     }

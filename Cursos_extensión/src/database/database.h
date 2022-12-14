@@ -15,6 +15,8 @@ class Database{
         RepositorioCursos _cursos_extension;
         RepositorioUsuarios _usuarios_registrados;
     public:
+        const std::string datos_administrador = "Correo: correoadmin@gmail.com\nNumero de telefono: 123456";
+
         Database() : _cursos_extension("cursos"), _usuarios_registrados("usuarios"){}
         //Usuarios
         // Devuelve true si lo ha podido registrar y false si ya existia
