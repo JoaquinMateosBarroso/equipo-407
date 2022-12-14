@@ -55,7 +55,8 @@ char inicio_sesion()
 
         if (!database.login_usuario(dni, contrasena, usuario)){
             cout << "Usuario o contrasena incorrecto, se procede a salir del programa" << endl;
-            exit(EXIT_SUCCESS);}
+            exit(EXIT_SUCCESS);
+        }
     }
     return n;
 }
@@ -103,6 +104,7 @@ char pagina_usuario()
     cout << "1.- Ver información de cursos" << endl;
     char n;
     cin.getline(&n, 100, '\n');
+    if (n != '1') {cout << "Opcion inválida" << endl;exit(1);}
     cls();
     return n;
 }
