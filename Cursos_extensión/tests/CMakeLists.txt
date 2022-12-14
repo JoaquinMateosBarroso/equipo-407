@@ -11,11 +11,14 @@ add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main)
 # End GTest include code 
 
-#Testing2 basket library
-# add_executable(basket_test2 basket_test2.cc)
-# target_link_libraries(basket_test2
-#  PRIVATE GTest::GTest basket
-#  PRIVATE GTest::GTest tv
-#  PRIVATE GTest::GTest product
-#  PRIVATE GTest::GTest computer)
-# add_test(basket_gtests basket_test2)
+# Testing historia1
+add_executable(historia1_test historia1_test.cc)
+target_link_libraries(historia1_test
+  PRIVATE GTest::GTest database)
+add_test(historia1_gtests historia1_test)
+
+# Testing historia2
+add_executable(historia2_test historia2_test.cc)
+target_link_libraries(historia2_test
+  PRIVATE GTest::GTest database)
+add_test(historia1_gtests historia2_test)
