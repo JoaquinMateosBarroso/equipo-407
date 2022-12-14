@@ -46,6 +46,7 @@ char inicio_sesion()
     cout << "3.- Coordinador de recursos" << endl;
     char n;
     cin.getline(&n, 5, '\n');
+    if (n != '0' and n != '1' and n != '2' and n != '3') {cout << "Error de elección" << endl; exit(1);}
     if (n != '0'){
         string dni, contrasena;
         cout << "Introduzca su dni:";
