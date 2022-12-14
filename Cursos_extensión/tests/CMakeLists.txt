@@ -21,4 +21,16 @@ add_test(historia1_gtests historia1_test)
 add_executable(historia2_test historia2_test.cc)
 target_link_libraries(historia2_test
   PRIVATE GTest::GTest database)
-add_test(historia1_gtests historia2_test)
+add_test(historia2_gtests historia2_test)
+
+# Testing historia3
+add_executable(historia3_test historia3_test.cc)
+target_link_libraries(historia3_test
+  PRIVATE GTest::GTest database)
+add_test(historia3_gtests historia3_test)
+
+# Testing historia4
+add_executable(historia4_test historia4_test.cc)
+target_link_libraries(historia4_test
+  PRIVATE GTest::GTest database)
+add_test(historia4_gtests historia4_test)
