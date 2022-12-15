@@ -1,5 +1,7 @@
 # Edufy - Sistema de gestión de cursos de extensión
 
+![Logo de la empresa](/Docs/logo.jpeg)
+
 El proyecto ha sido realizado en el lenguaje C++, haciendo uso de la herramienta de construcción <i>CMAKE</i>. Las pruebas del mismo han sido realizadas con la libreria <i>googletest</i>.
 
 ### Compilación
@@ -22,3 +24,6 @@ Para ejecutar toda la suite de test unitarios, en `/build` ejecutamos
 ctest
 ```
 Si queremos ejecutar algún test en especifico y ver su salida en detalle ejecutamos los binarios que se encuentran en `/build/src/tests`
+
+### Material audiovisual
+Con fin de facilitar la experiencia y el entendimiento del software para los usuarios se ha añadido material audiovisual en la carpeta `/Docs`.
